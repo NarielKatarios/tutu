@@ -13,8 +13,8 @@ class RoutesController < ApplicationController
   end
 
   def edit
-    @railway_stations = RailwayStation.all
     @route = Route.find(params[:id])
+    @railway_stations = RailwayStation.all - @route.railway_stations
   end
 
   def create

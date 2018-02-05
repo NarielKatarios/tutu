@@ -3,7 +3,7 @@
 <%= render 'form' %>
 
 <p>
-  <strong>All Stations:</strong>
+  <strong>Содержит станции:</strong>
   <%- @route.railway_stations.each do |st| %>
     <p>
       <%= link_to 'Удалить станцию', route_del_station_path(@route, railway_station: st), method: :post %>
@@ -11,7 +11,7 @@
   <%- end %>
 </p>
 <p>
-  <strong>All Stations:</strong>
+  <strong>Добавить станции:</strong>
   <%- @railway_stations.each do |st| %>
     <p>
       <%= link_to 'Добавить станцию', route_add_station_path(@route, railway_station: st), method: :post %>
