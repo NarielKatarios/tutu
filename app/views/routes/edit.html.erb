@@ -2,4 +2,22 @@
 
 <%= render 'form' %>
 
+<p>
+  <strong>All Stations:</strong>
+  <%- @route.railway_stations.each do |st| %>
+    <p>
+      <%= link_to 'Удалить станцию', route_del_station_path(@route, railway_station: st), method: :post %>
+      <%= st.title %>
+  <%- end %>
+</p>
+<p>
+  <strong>All Stations:</strong>
+  <%- @railway_stations.each do |st| %>
+    <p>
+      <%= link_to 'Добавить станцию', route_add_station_path(@route, railway_station: st), method: :post %>
+      <%= st.title %>
+  <%- end %>
+</p>
+
+
 <%= link_to 'Back', routes_path %>

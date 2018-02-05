@@ -13,6 +13,7 @@ class RoutesController < ApplicationController
   end
 
   def edit
+    @railway_stations = RailwayStation.all
     @route = Route.find(params[:id])
   end
 
@@ -41,6 +42,20 @@ class RoutesController < ApplicationController
     @route.destroy
 
     redirect_to routes_path
+  end
+
+  def add_station
+    @station = RailwayStation.find(params[:railway_station])
+    @route = Route.find(params[:route_id])
+    @route.railway_stations.push(@station)
+    redirect_to edit_route_path(@route)
+  end
+
+  def del_station
+    @station = RailwayStation.find(params[:railway_station])
+    @route = Route.find(params[:route_id])
+    @route.railway_stations.delete(@station)
+    redirect_to edit_route_path(@route)
   end
 
   private

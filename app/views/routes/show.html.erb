@@ -8,5 +8,12 @@
   <%= @route.text %>
 </p>
 
+<p>
+  <strong>Route Stations:</strong>
+  <%- @route.railway_stations.each do |st| %>
+    <%= st.title %>
+  <%- end %>
+</p>
+
 <%= link_to 'Edit', edit_route_path(@route) %>
 <%= link_to 'Back', routes_path %>

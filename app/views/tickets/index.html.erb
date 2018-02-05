@@ -1,0 +1,22 @@
+<h1>Tickets</h1>
+<%= link_to 'На главную', root_path %>
+
+<table>
+  <tr>
+    <th>Number</th>
+    <th colspan="2"></th>
+  </tr>
+
+  <% @tickets.each do |ticket| %>
+    <tr>
+      <td><%= ticket.number %></td>
+      <td><%= link_to 'Show', ticket_path(ticket) %></td>
+      <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
+      <td><%= link_to 'Destroy', ticket_path(ticket),
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Новый билет', new_ticket_path %>
