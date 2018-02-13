@@ -6,6 +6,7 @@ class RoutesController < ApplicationController
 
   def show
     @route = Route.find(params[:id])
+    @trains = Train.all
   end
 
   def new
@@ -52,6 +53,7 @@ class RoutesController < ApplicationController
   end
 
   def del_station
+    # http://localhost:3000/routes/5/del_station?railway_station=1
     @station = RailwayStation.find(params[:railway_station])
     @route = Route.find(params[:route_id])
     @route.railway_stations.delete(@station)

@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  validates :name, presence: true
+  validates :title, presence: true
 
   has_many :tickets
 end

@@ -1,19 +1,26 @@
 <p>
-  <strong>Title:</strong>
+  <strong>Наименование:</strong>
   <%= @route.title %>
 </p>
 
 <p>
-  <strong>Text:</strong>
+  <strong>Дополнительные сведения:</strong>
   <%= @route.text %>
 </p>
 
 <p>
-  <strong>Route Stations:</strong>
+  <strong>Станции на маршруте:</strong>
   <%- @route.railway_stations.each do |st| %>
     <%= st.title %>
   <%- end %>
 </p>
 
-<%= link_to 'Edit', edit_route_path(@route) %>
-<%= link_to 'Back', routes_path %>
+<p>
+  <strong>Поезда:</strong>
+  <%- @route.trains.each do |train| %>
+    <%= train.number %>
+  <%- end %>
+</p>
+
+<%= link_to 'Изменить', edit_route_path(@route) %>
+<%= link_to 'Назад', routes_path %>

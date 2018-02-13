@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Номер:</strong>
+  <%= @wagon.number %>
+</p>
+<p>
+  <strong>Поезд:</strong>
+  <% if @wagon.train.present? %>
+    <%= @wagon.train.number %>
+  <% else %>
+    Не указано
+  <% end %>
+</p>
+<p>
+  <strong>Тип:</strong>
+  <% if @wagon.wagon_type.present? %>
+    <%= @wagon.wagon_type %>
+  <% else %>
+    Тип не назначен
+  <% end %>
+<p>
+  <strong>Количество верхних мест:</strong>
+  <%= @wagon.seats_up %>
+</p>
+<p>
+  <strong>Количество нижних мест:</strong>
+  <%= @wagon.seats_down %>
+</p>
+<%= link_to 'Изменить', edit_wagon_path(@wagon) %> |
+<%= link_to 'Назад', wagons_path %>

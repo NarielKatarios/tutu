@@ -1,9 +1,53 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Number:</strong>
+  <strong>Номер:</strong>
   <%= @train.number %>
 </p>
+<p>
+  <strong>На станции:</strong>
+  <% if @train.current_station.present? %>
+    <%= @train.current_station.title %>
+  <% else %>
+    Не указано
+  <% end %>
+</p>
+<p>
+  <strong>Маршрут:</strong>
+  <% if @train.route.present? %>
+    <%= @train.route.title %>
+  <% else %>
+    Маршрут не назначен
+  <% end %>
+</p>
+<p>
+  <strong>Количество вагонов:</strong>
+  Плацкартных: <%= @train.wagons.select { |wagon| wagon.wagon_type == 'Плацкартный' }.size %>
+  Купейных: <%= @train.wagons.select { |wagon| wagon.wagon_type == 'Купейный' }.size %>
+</p>
+<p>
+  <strong>Количество мест:</strong>
+  <ul>
+    <% @train.wagons.each do |wagon| %>
+      <li><b><%= wagon.wagon_type %></b> _
+      Верхних мест: <%= wagon.seats_up %>
+      Нижних мест: <%= wagon.seats_down %></li>
+    <% end %>
+  </ul>
+</p>
+<p>
+  <strong>Билеты:</strong>
+  <ul>
+    <% @train.tickets.each do |ticket| %>
+      <li>
+        <b>№<%= ticket.number %></b> _
+        Пользователь: <%= ticket.user.title %>;
+        Вагон: <%= ticket.wagon.number %>;
+        Станция: <%= ticket.railway_station.title %>
+      </li>
+    <% end %>
+  </ul>
+</p>
 
-<%= link_to 'Edit', edit_train_path(@train) %> |
-<%= link_to 'Back', trains_path %>
+<%= link_to 'Изменить', edit_train_path(@train) %> |
+<%= link_to 'Назад', trains_path %>

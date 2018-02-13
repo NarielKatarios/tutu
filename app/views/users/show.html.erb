@@ -1,7 +1,21 @@
 <p>
-  <strong>Title:</strong>
+  <strong>Имя:</strong>
   <%= @user.title %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %>
-<%= link_to 'Back', users_path %>
+<p>
+  <strong>Билеты:</strong>
+<ul>
+  <% @user.tickets.each do |ticket| %>
+    <li>
+      <b>№<%= ticket.number %></b> _
+      Пользователь: <%= ticket.user.title %>;
+      Вагон: <%= ticket.wagon.number %>;
+      Станция: <%= ticket.railway_station.title %>
+    </li>
+  <% end %>
+</ul>
+</p>
+
+<%= link_to 'Изменить', edit_user_path(@user) %>
+<%= link_to 'Назад', users_path %>

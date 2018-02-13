@@ -1,20 +1,28 @@
-<h1>Tickets</h1>
+<h1>Билеты</h1>
 <%= link_to 'На главную', root_path %>
 
-<table>
+<table border="1">
   <tr>
-    <th>Number</th>
-    <th colspan="2"></th>
+    <th>Номер</th>
+    <th>Поезд</th>
+    <th>Станция продажи</th>
+    <th>Пользователь</th>
+    <th>Вагон</th>
+    <th colspan="3"></th>
   </tr>
 
   <% @tickets.each do |ticket| %>
+
     <tr>
-      <td><%= ticket.number %></td>
-      <td><%= link_to 'Show', ticket_path(ticket) %></td>
-      <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
-      <td><%= link_to 'Destroy', ticket_path(ticket),
+      <td><%= link_to ticket.number, ticket_path(ticket) %></td>
+      <td><%= link_to ticket.train.number %></td>
+      <td><%= link_to ticket.railway_station.title %></td>
+      <td><%= link_to ticket.user.title %></td>
+      <td><%= link_to ticket.wagon.number %></td>
+      <td><%= link_to 'Изменить', edit_ticket_path(ticket) %></td>
+      <td><%= link_to 'Удалить', ticket_path(ticket),
                       method: :delete,
-                      data: { confirm: 'Are you sure?' } %></td>
+                      data: { confirm: 'Вы уверены?' } %></td>
     </tr>
   <% end %>
 </table>

@@ -1,0 +1,15 @@
+<h1>Изменение вагона</h1>
+
+<%= render 'form', wagon: @wagon %>
+
+<p>
+  <strong>Поезд:</strong>
+  <% if @wagon.train.present? %>
+    <%= @wagon.train.number %>
+  <% else %>
+    Не указано
+  <% end %>
+</p>
+
+<%= link_to 'Просмотр', @wagon %> |
+<%= link_to 'Назад', wagons_path %>
