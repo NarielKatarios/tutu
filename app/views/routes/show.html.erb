@@ -9,13 +9,18 @@
 </p>
 
 <p>
-  <strong>Станции на маршруте:</strong>
-  <%- @route.railway_stations.each do |st| %>
-    <%= st.title %>
-  <%- end %>
-</p>
-
+  <strong>Станции в маршруте:</strong>
+    <% if @route.railway_stations.empty? %>
+      Список пуст
+    <% else %>
+        <ul>
+          <% @route.railway_stations.each do |st| %>
+            <li><%= st.title %></li>
+          <% end %>
+        </ul>
+    <% end %>
 <p>
+
   <strong>Поезда:</strong>
   <%- @route.trains.each do |train| %>
     <%= train.number %>
