@@ -19,6 +19,7 @@
       <td><%= link_to ticket.railway_station.title %></td>
       <td><%= link_to ticket.user.title %></td>
       <td><%= link_to ticket.wagon.number %></td>
+      <td><%= link_to 'Продано', ticket_path(ticket) %></td>
       <td><%= link_to 'Изменить', edit_ticket_path(ticket) %></td>
       <td><%= link_to 'Удалить', ticket_path(ticket),
                       method: :delete,

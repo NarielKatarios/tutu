@@ -11,6 +11,18 @@
     <%= form.select :user_id, User.all.map { |user| [user.title, user.id] } %>
   </p>
   <p>
+    <%= form.label :user_name %><br>
+    <%= form.text_field :user_name, id: :ticket_user_name %>
+  </p>
+ <p>
+    <%= form.label :user_surname %><br>
+    <%= form.text_field :user_surname, id: :ticket_user_surname %>
+  </p>
+  <p>
+    <%= form.label :user_patronymic %><br>
+    <%= form.text_field :user_patronymic, id: :ticket_user_patronymic %>
+  </p>
+  <p>
     <%= form.label :wagon_id %><br>
     <%= form.select :wagon_id, @train.wagons.all.map { |wagon| [wagon.number, wagon.id] } %>
   </p>
@@ -21,6 +33,14 @@
   <p>
     <%= form.label :railway_station_id %><br>
     <%= form.select :railway_station_id, @train.route.railway_stations.map { |railway_station| [railway_station.title, railway_station.id] } %>
+  </p>
+  <p>
+    <%= form.label :start_station %><br>
+    <%= form.text_field :start_station, id: :ticket_start_station %>
+  </p>
+  <p>
+    <%= form.label :end_station %><br>
+    <%= form.text_field :end_station, id: :ticket_end_station %>
   </p>
 
   <p>
