@@ -15,22 +15,14 @@ class TicketsController < ApplicationController
 
   def edit
     @ticket = Ticket.find(params[:id])
+    @train = @ticket.train
   end
 
   def create
-    params
     @train = Train.find(params[:ticket][:train_id])
     @ticket = @train.tickets.new(ticket_params)
     @ticket.user = User.find(params[:ticket][:user_id])
     @ticket.wagon = Wagon.find(params[:ticket][:wagon_id])
-    @ticket.railway_station = RailwayStation.find(params[:ticket][:railway_station_id])
-    @ticket.user_name = Ticket.find(params[:ticket][:user_name_id])
-    @ticket.user_surname = Ticket.find(params[:ticket][:user_surname_id])
-    @ticket.user_patronymic = Ticket.find(params[:ticket][:user_patronymic_id])
-    @ticket.start_station = Ticket.find(params[:ticket][:start_station_id])
-    @ticket.end_station = Ticket.find(params[:ticket][:end_stationn_id])
-
-
 
     if @ticket.save
       redirect_to @ticket
@@ -41,16 +33,8 @@ class TicketsController < ApplicationController
 
   def update
     @ticket = Ticket.find(params[:id])
-    @ticket.railway_station = RailwayStation.find(params[:ticket][:railway_station_id])
     @ticket.user = User.find(params[:ticket][:user_id])
     @ticket.wagon = Wagon.find(params[:ticket][:wagon_id])
-    @ticket.train = Train.find(params[:ticket][:train_id])
-    @ticket.user_name = Ticket.find(params[:ticket][:user_name_id])
-    @ticket.user_surname = Ticket.find(params[:ticket][:user_surname_id])
-    @ticket.user_patronymic = Ticket.find(params[:ticket][:user_patronymic_id])
-    @ticket.start_station = Ticket.find(params[:ticket][:start_station_id])
-    @ticket.end_station = Ticket.find(params[:ticket][:end_stationn_id])
-
     if @ticket.update(ticket_params)
       redirect_to @ticket
     else
@@ -68,6 +52,6 @@ class TicketsController < ApplicationController
   private
 
   def ticket_params
-    params.require(:ticket).permit(:number, :user_name, :user_surname, :user_patronymic, :start_station, :end_station)
+    params.require(:ticket).permit(:number, :user_name, :user_surname, :user_patronymic, :start_station_id, :end_station_id)
   end
 end

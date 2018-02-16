@@ -3,45 +3,39 @@
   <%= render 'common/errors', resource: @ticket %>
 
   <p>
-    <%= form.label :number %><br>
+    <%= form.label :number, "Номер билета" %><br>
     <%= form.number_field :number, id: :ticket_number %>
   </p>
   <p>
-    <%= form.label :user_id %><br>
+    <%= form.label :user_id, "Пользователь" %><br>
     <%= form.select :user_id, User.all.map { |user| [user.title, user.id] } %>
   </p>
-  <p>
-    <%= form.label :user_name %><br>
-    <%= form.text_field :user_name, id: :ticket_user_name %>
-  </p>
  <p>
-    <%= form.label :user_surname %><br>
-    <%= form.text_field :user_surname, id: :ticket_user_surname %>
+    <%= form.label :user_surname, "Фамилия отправляющегося" %><br>
+    <%= form.text_field :user_surname %>
   </p>
   <p>
-    <%= form.label :user_patronymic %><br>
-    <%= form.text_field :user_patronymic, id: :ticket_user_patronymic %>
+    <%= form.label :user_name, "Имя отправляющегося" %><br>
+    <%= form.text_field :user_name%>
   </p>
   <p>
-    <%= form.label :wagon_id %><br>
+    <%= form.label :user_patronymic, "Отчество отправляющегося" %><br>
+    <%= form.text_field :user_patronymic %>
+  </p>
+  <p>
+    <%= form.label :wagon_id, "Вагон" %><br>
     <%= form.select :wagon_id, @train.wagons.all.map { |wagon| [wagon.number, wagon.id] } %>
   </p>
   <p>
-    <%= form.label :train_id %><br>
-    <%= form.select :train_id, Train.all.map { |train| [train.number, train.id] } %>
+    <%= form.label :start_station_id, "Станция отправления" %>
+    <%= form.collection_select :start_station_id, @train.route.railway_stations, :id, :title, {} %>
   </p>
   <p>
-    <%= form.label :railway_station_id %><br>
-    <%= form.select :railway_station_id, @train.route.railway_stations.map { |railway_station| [railway_station.title, railway_station.id] } %>
+    <%= form.label :end_station_id, "Станция прибытия" %>
+    <%= form.collection_select :end_station_id, @train.route.railway_stations, :id, :title, {} %>
   </p>
-  <p>
-    <%= form.label :start_station %><br>
-    <%= form.text_field :start_station, id: :ticket_start_station %>
-  </p>
-  <p>
-    <%= form.label :end_station %><br>
-    <%= form.text_field :end_station, id: :ticket_end_station %>
-  </p>
+
+
 
   <p>
     <%= form.submit %>

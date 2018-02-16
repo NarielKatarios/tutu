@@ -7,12 +7,11 @@
   <strong>Билеты:</strong>
 <ul>
   <% @user.tickets.each do |ticket| %>
-    <li>
-      <b>№<%= ticket.number %></b> _
-      Пользователь: <%= ticket.user.title %>;
-      Вагон: <%= ticket.wagon.number %>;
-      Станция: <%= ticket.railway_station.title %>
-    </li>
+    <li><b>№<%= ticket.number %></b></li>
+    <li>Пользователь: <%= ticket.user.title %></li>
+    <li> Вагон: <%= ticket.wagon.number %></li>
+    <li>Станция отправления: <%= RailwayStation.find(ticket.start_station_id).title %></li>
+    <li>Станция прибытия: <%= RailwayStation.find(ticket.end_station_id).title %></li>
   <% end %>
 </ul>
 </p>
