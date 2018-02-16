@@ -7,17 +7,34 @@
   <%= @ticket.user.title %>
 </p>
 <p>
-  <strong>Вагон:</strong>
-  <%= @ticket.wagon.number %>
+  <strong>Фамилия отправляющегося:</strong>
+  <%= @ticket.user_surname %>
+</p>
+<p>
+  <strong>Имя отправляющегося:</strong>
+  <%= @ticket.user_name %>
+</p>
+<p>
+  <strong>Отчество отправляющегося:</strong>
+  <%= @ticket.user_patronymic %>
+</p>
+<p>
+  <strong>Станция отправления:</strong>
+  <%= RailwayStation.find(@ticket.start_station_id).title %>
+</p>
+<p>
+  <strong>Станция прибытия:</strong>
+  <%= RailwayStation.find(@ticket.end_station_id).title %>
 </p>
 <p>
   <strong>Поезд:</strong>
-  <%= @ticket.train.number %>
+  <%= full_name(@ticket.train) %>
 </p>
 <p>
-  <strong>Железнодорожная станция:</strong>
-  <%= @ticket.railway_station.title %>
+  <strong>Вагон:</strong>
+  <%= @ticket.wagon.number %>
 </p>
+
 
 <%= link_to 'Изменить', edit_ticket_path(@ticket) %>
 <%= link_to 'Назад', tickets_path %>
