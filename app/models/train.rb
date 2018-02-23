@@ -7,4 +7,6 @@ class Train < ApplicationRecord
   has_many :wagons
   has_many :carriages
 
+  validates :wagon_id, uniqueness: { scope: :train_id }
+
 end

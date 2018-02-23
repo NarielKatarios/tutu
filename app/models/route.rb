@@ -9,10 +9,13 @@ class Route < ApplicationRecord
 
   before_validation :set_title
 
+  scope :station, -> { where(type: 'RailwayStation') }
+  scope :ordered, -> {order(:number)}
+
   private
 
   def set_title
-    self.title ||= "#{railway_stations.first.title}-#{railway_stations.last.title}"
+    self.title = "#{railway_stations.first.title}-#{railway_stations.last.title}"
   end
 
   def stations_count
