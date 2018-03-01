@@ -25,7 +25,7 @@ class TicketsController < ApplicationController
     @ticket.wagon = Wagon.find(params[:ticket][:wagon_id])
 
     if @ticket.save
-      redirect_to @ticket
+      redirect_to @ticket, notice: 'Билет куплен'
     else
       render 'new'
     end
@@ -46,7 +46,7 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:id])
     @ticket.destroy
 
-    redirect_to tickets_path
+    redirect_to tickets_path, notice: 'Билет удален'
   end
 
   private

@@ -1,2 +1,0 @@
-class CoupeCarriage < Carriage
-end

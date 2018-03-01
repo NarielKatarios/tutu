@@ -22,8 +22,14 @@
 </p>
 <p>
   <strong>Количество вагонов:</strong>
-  Плацкартных: <%= @train.wagons.select { |wagon| wagon.wagon_type == 'Плацкартный' }.size %>
-  Купейных: <%= @train.wagons.select { |wagon| wagon.wagon_type == 'Купейный' }.size %>
+<li>Плацкартных: <%= @train.wagons.each { |wagon| wagon.wagon_type == 'Плацкартный' }.size %></li>
+<li>Купейных: <%= @train.wagons.each { |wagon| wagon.wagon_type == 'Купейный' }.size %></li>
+<li> Номер: <% @train.wagons.each do |wagon| %>
+    <%= link_to wagon.number, wagon_path(wagon) %><% end %></li>
+<li> <%= label_tag('sort_by_tail') do %>
+    Сортировка с хвоста поезда
+    <= check_box_tag("sort_by_tail",false) %>
+  <% end %></li>
 </p>
 <p>
   <strong>Количество мест:</strong>
@@ -48,6 +54,7 @@
     <% end %>
   </ul>
 </p>
+
 
 <%= link_to 'Изменить', edit_train_path(@train) %> |
 <%= link_to 'Назад', trains_path %>

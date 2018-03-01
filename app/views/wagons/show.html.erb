@@ -27,5 +27,19 @@
   <strong>Количество нижних мест:</strong>
   <%= @wagon.seats_down %>
 </p>
+
+<p>
+  <strong>Вагон <%= @wagon.number %></strong>
+
+<ul>
+      <li><%= @wagon.id.to_s %></li>
+      <li><%= @wagon.wagon_type %></li>
+          Боковых верхних: <%= @wagon.side_top_seats %>
+          Нижних:   <%= @wagon.bottom_seats %>
+          Боковых нижних:   <%= @wagon.side_top_seats %>
+          Сидячих:  <%= @wagon.sedentary_seats %>
+      </li>
+</ul>
+
 <%= link_to 'Изменить', edit_wagon_path(@wagon) %> |
 <%= link_to 'Назад', wagons_path %>
