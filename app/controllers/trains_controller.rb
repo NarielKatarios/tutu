@@ -18,7 +18,6 @@ class TrainsController < ApplicationController
 
   def create
     @train = Train.new(train_params)
-
     respond_to do |format|
       if @train.save
         format.html { redirect_to @train, notice: 'Train was successfully created.' }
@@ -54,11 +53,12 @@ class TrainsController < ApplicationController
   end
 
   private
-    def set_train
-      @train = Train.find(params[:id])
-    end
 
-    def train_params
-      params.require(:train).permit(:number, :current_station_id, :route_id)
-    end
+  def set_train
+    @train = Train.find(params[:id])
+  end
+
+  def train_params
+    params.require(:train).permit(:number, :current_station_id, :route_id, :sort_by_tail)
+  end
 end

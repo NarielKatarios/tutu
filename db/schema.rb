@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180204172909) do
+ActiveRecord::Schema.define(version: 20180304132916) do
 
   create_table "railway_stations", force: :cascade do |t|
     t.string "title"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20180204172909) do
   create_table "railway_stations_routes", force: :cascade do |t|
     t.integer "railway_station_id"
     t.integer "route_id"
+    t.integer "station_number"
   end
 
   create_table "routes", force: :cascade do |t|
@@ -35,7 +36,18 @@ ActiveRecord::Schema.define(version: 20180204172909) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "train_id"
+    t.integer "wagon_id"
+    t.integer "railway_station_id"
+    t.integer "user_id"
+    t.string "user_name"
+    t.string "user_surname"
+    t.string "user_patronymic"
+    t.integer "start_station_id"
+    t.integer "end_station_id"
+    t.index ["railway_station_id"], name: "index_tickets_on_railway_station_id"
     t.index ["train_id"], name: "index_tickets_on_train_id"
+    t.index ["user_id"], name: "index_tickets_on_user_id"
+    t.index ["wagon_id"], name: "index_tickets_on_wagon_id"
   end
 
   create_table "trains", force: :cascade do |t|
@@ -44,6 +56,7 @@ ActiveRecord::Schema.define(version: 20180204172909) do
     t.datetime "updated_at", null: false
     t.integer "current_station_id"
     t.integer "route_id"
+    t.boolean "sort_by_tail"
     t.index ["current_station_id"], name: "index_trains_on_current_station_id"
     t.index ["route_id"], name: "index_trains_on_route_id"
   end
@@ -52,6 +65,20 @@ ActiveRecord::Schema.define(version: 20180204172909) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "wagons", force: :cascade do |t|
+    t.integer "number"
+    t.integer "sedentary_seats"
+    t.integer "top_seats"
+    t.integer "side_top_seats"
+    t.integer "bottom_seats"
+    t.integer "side_bottom_seats"
+    t.integer "train_id"
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["train_id"], name: "index_wagons_on_train_id"
   end
 
 end

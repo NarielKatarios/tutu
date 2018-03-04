@@ -10,7 +10,7 @@
 
   <% @routes.each do |route| %>
     <tr>
-      <td><%= link_to route.title, route_path(route) %></td>
+      <td><%= link_to route_full_name(route), route_path(route) %></td>
       <td><%= route.text %></td>
       <td><%= link_to 'Изменить', edit_route_path(route) %></td>
       <td><%= link_to 'Удалить', route_path(route),
