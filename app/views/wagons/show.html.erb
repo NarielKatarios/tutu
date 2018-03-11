@@ -19,7 +19,11 @@
   <% else %>
     Тип не назначен
   <% end %>
-
+</p>
+<p>
+  <strong>Всего мест <%= @wagon.type_name %> в поезде <%= @wagon.train.number %>:</strong>
+  <%= @wagon.seats_count_for_wagon_type %>
+</p>
 <p>
   <strong>Вагон <%= @wagon.number %></strong>
 
@@ -33,5 +37,5 @@
    <li>Сидячих:          <%= @wagon.sedentary_seats %> мест</li>
 </ul>
 
-<%= link_to 'Изменить', edit_wagon_path(@wagon) %> |
+<%= link_to 'Изменить', edit_train_wagons_path(train_id: @wagon.train.id, id: @wagon.id) %> |
 <%= link_to 'Назад', wagons_path %>

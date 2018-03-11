@@ -25,9 +25,9 @@
   <ul>
     <li>Плацкартных: <%= @train.wagons.each { |wagon| wagon.type == 'EconomyWagon' }.size %></li>
     <li>Купейных:    <%= @train.wagons.each { |wagon| wagon.type == 'CoupeWagon' }.size %></li>
-    <li>СВ:          <%= @train.wagons.each { |wagon| wagon.type == 'SVWagon' }.size %></li>
+    <li>СВ:          <%= @train.wagons.each { |wagon| wagon.type == 'SvWagon' }.size %></li>
     <li>Сидячих:     <%= @train.wagons.each { |wagon| wagon.type == 'SedentaryWagon' }.size %></li>
-    <li> Номер:
+    <li> Вагоны:
       <% @train.wagons.each do |wagon| %>
         <%= link_to wagon.number, wagon_path(wagon) %>
       <% end %>
@@ -42,11 +42,10 @@
     </li>
   </ul>
 </p>
-<p><%= link_to 'Новый вагон', new_wagon_path %></p>
-<p><%= link_to 'Добавить плацкартный вагон', new_train_wagons_path(@train, type: EconomyWagon) %></p>
-<p><%= link_to 'Добавить купейный вагон',    new_train_wagons_path(@train, type: CoupeWagon) %></p>
-<p><%= link_to 'Добавить СВ вагон',          new_train_wagons_path(@train, type: 'SVWagon')%></p>
-<p><%= link_to 'Добавить сидячий вагон',     new_train_wagons_path(@train, type: SedentaryWagon)%></p>
+<p><%= link_to 'Добавить плацкартный вагон', new_train_wagons_path(@train, type: 'EconomyWagon') %></p>
+<p><%= link_to 'Добавить купейный вагон',    new_train_wagons_path(@train, type: 'CoupeWagon') %></p>
+<p><%= link_to 'Добавить СВ вагон',          new_train_wagons_path(@train, type: 'SvWagon') %></p>
+<p><%= link_to 'Добавить сидячий вагон',     new_train_wagons_path(@train, type: 'SedentaryWagon') %></p>
 </p>
 <p>
   <strong>Билеты:</strong>

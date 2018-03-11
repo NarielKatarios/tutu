@@ -1,4 +1,4 @@
-class SVWagon < Wagon
+class SvWagon < Wagon
   validates :bottom_seats, presence: true
 
   def seat_types

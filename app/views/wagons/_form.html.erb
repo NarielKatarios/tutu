@@ -1,45 +1,16 @@
-<%= form_with(model: Wagon, local: true) do |f| %>
-  <%= render 'common/errors',  resource: @wagon %>
+<%= form_with(url: wagons_path(train_id: @train.id, type: @wagon.class)) do |f| %>
+  <%= render 'common/errors', resource: @wagon %>
 
-  <div class="field">
-    <%= f.label :number, 'Номер вагона'%>
-    <%= f.number_field :number, id: :wagon_number %>
-  </div>
+  <p>Добавление <%= @wagon.type_name %> вагона к поезду №<%= @train.number %></p>
 
-  <div class="field">
-    <%= f.label :type, 'Тип вагона' %>
-    <%= f.select :type, [['купейный', 'CoupeWagon'], ['плацкартный', 'EconomyWagon'], ['СВ', 'SVWagon'], ['сидячий', 'SedentaryWagon']] %>
-  </div>
+  <% @wagon.seat_types.each do |seat| %>
+    <div class="field">
+      <%= f.label seat, Wagon.seats_type(seat) %>
+      <%= f.number_field seat %>
+    </div>
+  <% end %>
 
-  <div class="field">
-    <%= f.label :top_seats, 'Верхних мест' %>
-    <%= f.number_field :top_seats %>
-  </div>
-
-  <div class="field">
-    <%= f.label :bottom_seats, 'Нижних мест' %>
-    <%= f.number_field :bottom_seats %>
-  </div>
-
-  <div class="field">
-    <%= f.label :side_top_seats, 'Верхних боковых мест' %>
-    <%= f.number_field :side_top_seats %>
-  </div>
-
-  <div class="field">
-    <%= f.label :side_bottom_seats, 'Нижних боковых мест' %>
-    <%= f.number_field :side_bottom_seats %>
-  </div>
-
-  <div class="field">
-    <%= f.label :sedentary_seats, 'Сидячих мест' %>
-    <%= f.number_field :sedentary_seats %>
-  </div>
-
-  <div class="field">
-    <%= f.label :train_id, 'Поезд' %>
-    <%= f.collection_select :train_id, Train.all, :id, :number %>
-  </div>
+  <% f.hidden_field :train_id, value: @train.id %>
 
   <div class="actions">
     <%= f.submit "#{ @wagon.new_record? ? 'Создать' : 'Изменить' }" %>

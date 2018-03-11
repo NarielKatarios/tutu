@@ -6,11 +6,9 @@ class Wagon < ApplicationRecord
   scope :economy,   -> { where(type: 'EconomyWagon') }
   scope :coupe,     -> { where(type: 'CoupeWagon') }
   scope :sedentary, -> { where(type: 'SedentaryWagon') }
-  scope :s_v,       -> { where(type: 'SVWagon') }
+  scope :sv,        -> { where(type: 'SvWagon') }
   scope :sort_desc, -> { order('number DESC') }
   scope :sort_asc,  -> { order('number') }
-
-  before_save :set_wagon_number
 
   def type_name
     case self.type
@@ -18,7 +16,7 @@ class Wagon < ApplicationRecord
         "Плацкарт"
       when "CoupeWagon"
         "Купе"
-      when "SVWagon"
+      when "SvWagon"
         "СВ"
       when "SedentaryWagon"
         "Сидячий"
@@ -27,12 +25,30 @@ class Wagon < ApplicationRecord
     end
   end
 
-  def set_wagon_number
-    number = 0
-    if train.wagons == []
-      number = 1
-    else
-      number += train.wagons.maximum(:number)
+  def self.seats_type(type)
+    case type
+      when :top_seats
+        "Верхние места"
+      when :bottom_seats
+        "Нижние места"
+      when :side_bottom_seats
+        "Боковые нижние места"
+      when :side_top_seats
+        "Боковые верхние места"
+      when :sedentary_seats
+        "Сидячие места"
+      else
+        "Тип не назначен"
     end
+  end
+
+  def set_wagon_number
+    train.wagons == [] ? 1 : train.wagons.maximum(:number) + 1
+  end
+
+  def seats_count_for_wagon_type
+    seat_types.map do |seat_type|
+      self.class.where(type: type, train_id: train_id).map(&seat_type).sum
+    end.sum
   end
 end

@@ -1,5 +1,6 @@
 class WagonsController < ApplicationController
   before_action :set_wagon, only: [:show, :edit, :update, :destroy]
+  before_action :set_train, only: [:new, :create, :edit, :update]
 
   def index
     @wagons = Wagon.all
@@ -9,7 +10,7 @@ class WagonsController < ApplicationController
   end
 
   def new
-    @wagon = Wagon.new
+    @wagon = params[:type].constantize.new(wagon_params)
   end
 
   def edit
@@ -17,11 +18,12 @@ class WagonsController < ApplicationController
   end
 
   def create
-    @wagon = Wagon.new(wagon_params)
-
+    @wagon = params[:type].constantize.new(wagon_params)
+    @wagon.number = @wagon.set_wagon_number
+    @wagon.seats_count_for_wagon_type
     respond_to do |format|
       if @wagon.save
-        format.html { redirect_to @wagon, notice: 'Wagon was successfully created.' }
+        format.html { redirect_to train_path(@train), notice: 'Wagon was successfully created.' }
       else
         format.html { render :new }
       end
@@ -47,11 +49,15 @@ class WagonsController < ApplicationController
 
   private
 
+  def set_train
+    @train = Train.find params[:train_id]
+  end
+
   def set_wagon
     @wagon = Wagon.find(params[:id])
   end
 
   def wagon_params
-    params.require(:wagon).permit(:number, :wagon_type, :seats_up, :seats_down, :train_id)
+    params.permit(:number, :train_id, :bottom_seats, :top_seats, :side_bottom_seats, :side_top_seats, :sedentary_seats)
   end
 end
