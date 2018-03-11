@@ -1,6 +1,6 @@
 <p>
   <strong>Наименование:</strong>
-  <%= @route.title %>
+  <%= route_full_name(@route) %>
 </p>
 
 <p>
@@ -9,23 +9,30 @@
 </p>
 
 <p>
-  <strong>Станции в маршруте:</strong>
-    <% if @route.railway_stations.empty? %>
-      Список пуст
-    <% else %>
-        <ul>
-          <% @route.railway_stations.each do |st| %>
-            <li><%= st.title %></li>
-          <% end %>
-        </ul>
-    <% end %>
-<p>
+  <strong>Порядок станций в маршруте:</strong>
 
-  <strong>Поезда:</strong>
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>title</th>
+    <th colspan="2"></th>
+  </tr>
+
+  <% @route.railway_stations_routes.each do |stations_routes| %>
+  <tr>
+      <td><%= stations_routes.station_number %></td>
+      <td><%= link_to stations_routes.railway_station.title, railway_station_path(stations_routes.railway_station) %></td>
+      <td><%= link_to '+', route_increase_station_number_path(@route, stations_routes: stations_routes), method: :post %></td>
+      <td><%= link_to '-', route_decrease_station_number_path(@route, stations_routes: stations_routes), method: :post %></td>
+  </tr>
+  <% end %>
+</table>
+  </p>
+
+    <strong>Поезда:</strong>
   <%- @route.trains.each do |train| %>
   <p><%= full_name(train) %></p>
   <%- end %>
-</p>
 
 <%= link_to 'Изменить', edit_route_path(@route) %>
 <%= link_to 'Назад', routes_path %>

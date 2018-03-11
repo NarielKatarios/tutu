@@ -7,6 +7,7 @@ class RoutesController < ApplicationController
   def show
     @route = Route.find(params[:id])
     @trains = Train.all
+    # @station_number = RailwayStationsRoute.find(params[:station_number])
   end
 
   def new
@@ -60,9 +61,25 @@ class RoutesController < ApplicationController
     redirect_to edit_route_path(@route)
   end
 
+  def increase_station_number
+    @route = Route.find(params[:route_id])
+    stations_routes = @route.railway_stations_routes.find(params[:stations_routes])
+    num = stations_routes.station_number ? stations_routes.station_number + 1 : 1
+    stations_routes.update(station_number: num)
+    redirect_to @route
+  end
+
+  def decrease_station_number
+    @route = Route.find(params[:route_id])
+    stations_routes = @route.railway_stations_routes.find(params[:stations_routes])
+    num = stations_routes.station_number ? stations_routes.station_number - 1 : 1
+    stations_routes.update(station_number: num)
+    redirect_to @route
+  end
+
   private
 
   def route_params
-    params.require(:route).permit(:title, :text, railway_station_ids: [])
+    params.require(:route).permit(:title, :text, railway_station_ids: [], station_number: [])
   end
 end

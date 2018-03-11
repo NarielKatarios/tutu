@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     resource :railway_stations
     post :add_station
     post :del_station
+    post :increase_station_number
+    post :decrease_station_number
   end
   resources :tickets
   resources :users

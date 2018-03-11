@@ -14,18 +14,28 @@
 </p>
 <p>
   <strong>Тип:</strong>
-  <% if @wagon.wagon_type.present? %>
-    <%= @wagon.wagon_type %>
+  <% if @wagon.type.present? %>
+    <%= @wagon.type %>
   <% else %>
     Тип не назначен
   <% end %>
-<p>
-  <strong>Количество верхних мест:</strong>
-  <%= @wagon.seats_up %>
 </p>
 <p>
-  <strong>Количество нижних мест:</strong>
-  <%= @wagon.seats_down %>
+  <strong>Всего мест <%= @wagon.type_name %> в поезде <%= @wagon.train.number %>:</strong>
+  <%= @wagon.seats_count_for_wagon_type %>
 </p>
-<%= link_to 'Изменить', edit_wagon_path(@wagon) %> |
+<p>
+  <strong>Вагон <%= @wagon.number %></strong>
+
+<ul>
+   <li>ID <%= @wagon.id.to_s %></li>
+   <li>Тип <%= @wagon.type %></li>
+   <li>Боковых верхних:  <%= @wagon.side_top_seats %> мест</li>
+   <li>Верхних:          <%= @wagon.bottom_seats %> мест</li>
+   <li>Нижних:           <%= @wagon.bottom_seats %> мест</li>
+   <li>Боковых нижних:   <%= @wagon.side_top_seats %> мест</li>
+   <li>Сидячих:          <%= @wagon.sedentary_seats %> мест</li>
+</ul>
+
+<%= link_to 'Изменить', edit_train_wagons_path(train_id: @wagon.train.id, id: @wagon.id) %> |
 <%= link_to 'Назад', wagons_path %>

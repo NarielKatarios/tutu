@@ -1,30 +1,16 @@
-<%= form_with(model: wagon, local: true) do |f| %>
-  <%= render 'common/errors',  resource: @wagon %>
+<%= form_with(url: wagons_path(train_id: @train.id, type: @wagon.class)) do |f| %>
+  <%= render 'common/errors', resource: @wagon %>
 
-  <div class="field">
-    <%= f.label :number %>
-    <%= f.number_field :number, id: :wagon_number %>
-  </div>
+  <p>Добавление <%= @wagon.type_name %> вагона к поезду №<%= @train.number %></p>
 
-  <div class="field">
-    <%= f.label :wagon_type %>
-    <%= f.select :wagon_type, ['купейный', 'плацкартный'] %>
-  </div>
+  <% @wagon.seat_types.each do |seat| %>
+    <div class="field">
+      <%= f.label seat, Wagon.seats_type(seat) %>
+      <%= f.number_field seat %>
+    </div>
+  <% end %>
 
-  <div class="field">
-    <%= f.label :seats_up %>
-    <%= f.number_field :seats_up %>
-  </div>
-
-  <div class="field">
-    <%= f.label :seats_down %>
-    <%= f.number_field :seats_down %>
-  </div>
-
-  <div class="field">
-    <%= f.label :train_id, "Поезд" %>
-    <%= f.collection_select :train_id, Train.all, :id, :number %>
-  </div>
+  <% f.hidden_field :train_id, value: @train.id %>
 
   <div class="actions">
     <%= f.submit "#{ @wagon.new_record? ? 'Создать' : 'Изменить' }" %>
