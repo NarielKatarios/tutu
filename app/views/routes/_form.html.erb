@@ -11,9 +11,6 @@
     <%= form.collection_select :railway_station_ids, RailwayStation.all, :id, :title, {}, { multiple: true}  %>
   </div>
 
-
-
-
   <p>
     <%= form.label :text %><br>
     <%= form.text_area :text %>
