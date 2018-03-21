@@ -17,7 +17,6 @@ class SearchController < ApplicationController
       train[:departure_time] = route.railway_stations_routes.find_by(railway_station: last_station).departure_time&.strftime('%H:%M')
       @trains << train
     end
-    #byebug
     render :search
   end
 end

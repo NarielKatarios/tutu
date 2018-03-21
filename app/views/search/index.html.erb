@@ -4,7 +4,7 @@
   <%= select_tag :first_station_id, options_from_collection_for_select(RailwayStation.all, :id, :title) %>
   <%= label_tag :current_station, '2 станция' %>
   <%= select_tag :last_station_id, options_from_collection_for_select(RailwayStation.all, :id, :title) %>
-  <div><%= submit_tag 'search/index' %></div>
+  <div><%= submit_tag 'Искать!' %></div>
 <% end %>
 <div id="search"></div>
 <%= link_to 'На главную', root_path %>

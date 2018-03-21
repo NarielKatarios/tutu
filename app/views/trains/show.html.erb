@@ -55,7 +55,7 @@
         <b>№<%= ticket.number %></b> _
         Пользователь: <%= ticket.user&.title %>;
         Вагон: <%= ticket.wagon&.number %>;
-        Станция: <%= ticket.railway_station&.title %>
+        Станция: <%= ticket.start_station_id&.title %>
       </li>
     <% end %>
   </ul>
