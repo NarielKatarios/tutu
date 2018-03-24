@@ -10,7 +10,7 @@ class TicketsController < ApplicationController
 
   def new
     @train = Train.find_by(id: params[:train])
-    @ticket = @train ? @train.tickets.new : Ticket.new
+    @ticket = @train ? @train.tickets.new(start_station_id: params[:arrival_station_id], end_station_id: params[:departure_station_id]) : Ticket.new
   end
 
   def edit

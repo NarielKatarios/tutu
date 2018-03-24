@@ -1,5 +1,36 @@
 <h1>Новый вагон</h1>
 
-<%= render 'form', wagon: @wagon %>
+<%= form_for [@train, @wagon] do |f| %>
+  <div class="field">
+  <%= f.label :number %><br>
+  <%= f.number_field :number %>
+  </div>
+ <div class="field">
+  <%= f.label :top_seats %><br>
+  <%= f.number_field :top_seats %>
+  </div>
+ <div class="field">
+  <%= f.label :bottom_seats %><br>
+  <%= f.number_field :bottom_seats %>
+  </div>
+ <div class="field">
+  <%= f.label :side_top_seats %><br>
+  <%= f.number_field :side_top_seats %>
+  </div>
+ <div class="field">
+  <%= f.label :side_bottom_seats %><br>
+  <%= f.number_field :side_bottom_seats %>
+  </div>
+  <div class="field">
+  <%= f.label :sedentary_seats %><br>
+  <%= f.number_field :sedentary_seats %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Создать" %>
+  </div>
+<% end %>
+
+    <%= render 'form', wagon: @wagon %>
 
 <%= link_to 'Назад', wagons_path %>

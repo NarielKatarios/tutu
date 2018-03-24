@@ -10,6 +10,7 @@ class WagonsController < ApplicationController
   end
 
   def new
+    #@wagon = @train.wagons.new(wagon_params)
     @wagon = params[:type].constantize.new(wagon_params)
   end
 
@@ -58,6 +59,6 @@ class WagonsController < ApplicationController
   end
 
   def wagon_params
-    params.permit(:number, :train_id, :bottom_seats, :top_seats, :side_bottom_seats, :side_top_seats, :sedentary_seats)
+    params.permit(:number, :train_id, :bottom_seats, :top_seats, :side_bottom_seats, :side_top_seats, :sedentary_seats, :type)
   end
 end

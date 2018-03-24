@@ -1,4 +1,5 @@
 <%= form_with model: @ticket, local: true do |form| %>
+  <%= form.hidden_field :train_id, value: @train.id %>
 
   <%= render 'common/errors', resource: @ticket %>
 
@@ -28,15 +29,12 @@
   </p>
   <p>
     <%= form.label :start_station_id, "Станция отправления" %>
-    <%= form.collection_select :start_station_id, @train.route.railway_stations, :id, :title, {} %>
+    <%= form.collection_select :start_station_id, @train.route.railway_stations, :id, :title, {selected: @ticket.start_station_id} %>
   </p>
   <p>
     <%= form.label :end_station_id, "Станция прибытия" %>
-    <%= form.collection_select :end_station_id, @train.route.railway_stations, :id, :title, {} %>
+    <%= form.collection_select :end_station_id, @train.route.railway_stations, :id, :title, {selected: @ticket.end_station_id} %>
   </p>
-
-
-
   <p>
     <%= form.submit %>
   </p>
