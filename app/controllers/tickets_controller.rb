@@ -1,7 +1,8 @@
 class TicketsController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :index]
 
   def index
-    @tickets = Ticket.all
+    @tickets = current_user.admin? ? Ticket.all : Ticket.where(user_id: current_user.id)
   end
 
   def show
@@ -21,8 +22,9 @@ class TicketsController < ApplicationController
   def create
     @train = Train.find(params[:ticket][:train_id])
     @ticket = @train.tickets.new(ticket_params)
-    @ticket.user = User.find(params[:ticket][:user_id])
+    # @ticket.user = User.find(params[:ticket][:user_id])
     @ticket.wagon = Wagon.find(params[:ticket][:wagon_id])
+    @ticket = current_user.ticket.new(params[:ticket][:number])
 
     if @ticket.save
       redirect_to @ticket, notice: 'Билет куплен'
