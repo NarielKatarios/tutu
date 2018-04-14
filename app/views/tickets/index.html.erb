@@ -18,7 +18,7 @@
     <tr>
       <td><%= link_to ticket.number, ticket_path(ticket) %></td>
       <td><%= ticket.train.number if ticket.train %></td>
-      <td><%= ticket.user&.title %></td>
+      <td><%= ticket.user&.full_name %></td>
       <td><%= ticket.wagon&.number %></td>
       <td><%= link_to 'Изменить', edit_ticket_path(ticket) %></td>
       <td><%= link_to 'Удалить', ticket_path(ticket),

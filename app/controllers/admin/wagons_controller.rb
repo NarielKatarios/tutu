@@ -24,7 +24,7 @@ class Admin::WagonsController < Admin::BaseController
     @wagon.seats_count_for_wagon_type
     respond_to do |format|
       if @wagon.save
-        format.html { redirect_to train_path(@train), notice: 'Wagon was successfully created.' }
+        format.html { redirect_to admin_train_path(@train), notice: 'Wagon was successfully created.' }
       else
         format.html { render :new }
       end

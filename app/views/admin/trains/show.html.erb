@@ -23,10 +23,10 @@
 <p>
   <strong>Количество вагонов:</strong>
   <ul>
-    <li>Плацкартных: <%= @train.wagons.each { |wagon| wagon.type == 'EconomyWagon' }.size %></li>
-    <li>Купейных:    <%= @train.wagons.each { |wagon| wagon.type == 'CoupeWagon' }.size %></li>
-    <li>СВ:          <%= @train.wagons.each { |wagon| wagon.type == 'SvWagon' }.size %></li>
-    <li>Сидячих:     <%= @train.wagons.each { |wagon| wagon.type == 'SedentaryWagon' }.size %></li>
+    <li>Плацкартных: <%= @train.wagons.select { |wagon| wagon.type == 'EconomyWagon' }.size %></li>
+    <li>Купейных:    <%= @train.wagons.select { |wagon| wagon.type == 'CoupeWagon' }.size %></li>
+    <li>СВ:          <%= @train.wagons.select { |wagon| wagon.type == 'SvWagon' }.size %></li>
+    <li>Сидячих:     <%= @train.wagons.select { |wagon| wagon.type == 'SedentaryWagon' }.size %></li>
     <li> Вагоны:
       <% @train.wagons.each do |wagon| %>
         <%= link_to wagon.number, admin_wagon_path(wagon) %>
@@ -53,9 +53,9 @@
     <% @train.tickets.each do |ticket| %>
       <li>
         <b>№<%= ticket.number %></b> _
-        Пользователь: <%= ticket.user&.title %>;
+        Пользователь: <%= ticket.user&.full_name %>;
         Вагон: <%= ticket.wagon&.number %>;
-        Станция: <%= ticket.start_station_id&.title %>
+        Станция: <%= ticket.start_station&.title %>
       </li>
     <% end %>
   </ul>
@@ -65,14 +65,10 @@
   <ul>
     <% @train.wagons.each do |wag| %>
       <li>
-        <%= link_to "Вагон №#{wag.number}", wag %>
+        <%= link_to "Вагон №#{wag.number}", admin_wagon_path(wag) %>
       </li>
   </ul>
     <% end %>
-  <%= link_to "Добавить вагон", new_admin_train_wagon_path(@train) %>
-</p>
-<p>
-  <%= link_to "Добавить вагон", new_admin_train_wagon_path(@train) %>
 </p>
 
 <%= link_to 'Изменить', edit_admin_train_path(@train) %> |

@@ -9,7 +9,7 @@
   </p>
   <p>
     <%#= form.label :user_id, "Пользователь" %><br>
-    <%#= form.select :user_id, User.all.map { |user| [user.title, user.id] } %>
+    <%#= form.select :user_id, User.all.map { |user| [user.full_name, user.id] } %>
   </p>
  <p>
     <%= form.label :user_surname, "Фамилия отправляющегося" %><br>

@@ -1,7 +1,7 @@
 <tr>
   <td><%= link_to full_name(train), [:admin, train] %></td>
   <td><%= link_to train.route.railway_stations.size, admin_railway_stations_path %></td>
-  <td><%= link_to train.wagons.size, admin_wagons_path %></td>
+  <td><%= link_to train.wagons.size, admin_train_path(train) %></td>
   <td><%= link_to train.tickets.size, tickets_path %></td>
   <td><%= link_to 'Создать билет', new_ticket_path(train: train) %></td>
   <td><%= link_to 'Изменить', edit_admin_train_path(train) %></td>

@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, except: [:create, :index]
 
   def index
-    @users = User.all
+    @users = current_user.admin? ? User.all : User.where(user_id: current_user.id)
   end
 
   def show
@@ -17,6 +18,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    byebug
     @user = User.new(user_params)
 
     if @user.save
@@ -46,6 +48,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:title)
+    params.require(:user).permit(:first_name, :last_name)
   end
 end

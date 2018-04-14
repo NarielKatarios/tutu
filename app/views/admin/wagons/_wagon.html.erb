@@ -3,7 +3,7 @@
   <td><%= wagon.train.number if wagon.train %></td>
   <td><%= wagon.type %></td>
   <td><ul>
-    <%= wagon.seat_types.each do |type| %>
+    <%- wagon.seat_types.each do |type| %>
     <li>
       <%= type.to_s + ': ' + wagon.send(type).to_s %>
     </li>

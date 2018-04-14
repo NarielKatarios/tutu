@@ -37,5 +37,5 @@
    <li>Сидячих:          <%= @wagon.sedentary_seats %> мест</li>
 </ul>
 
-<%= link_to 'Изменить', edit_admin_train_wagons_path(train_id: @wagon.train.id, id: @wagon.id) %> |
-<%= link_to 'Назад', @wagon.train %>
+<%= link_to 'Изменить', edit_admin_train_wagon_path(train_id: @wagon.train.id, id: @wagon.id) %> |
+<%= link_to 'Назад', admin_train_path(@wagon.train)%>
