@@ -1,9 +1,0 @@
-<tr>
-  <td><%= link_to full_name(train), train %></td>
-  <td><%= link_to train.route.railway_stations.size, railway_stations_path %></td>
-  <td><%= link_to train.wagons.size, wagons_path %></td>
-  <td><%= link_to train.tickets.size, tickets_path %></td>
-  <td><%= link_to 'Создать билет', new_ticket_path(train: train) %></td>
-  <td><%= link_to 'Изменить', edit_train_path(train) %></td>
-  <td><%= link_to 'Удалить', train, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
-</tr>

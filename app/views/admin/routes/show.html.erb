@@ -1,0 +1,79 @@
+<p>
+  <strong>Наименование:</strong>
+  <%= route_full_name(@route) %>
+</p>
+
+<p>
+  <strong>Дополнительные сведения:</strong>
+  <%= @route.text %>
+</p>
+
+<p>
+  <strong>Порядок станций в маршруте:</strong>
+
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>title</th>
+    <th colspan="2"></th>
+  </tr>
+
+  <% @route.railway_stations_routes.each do |stations_routes| %>
+  <tr>
+      <td><%= stations_routes.station_number %></td>
+      <td><%= link_to stations_routes.railway_station.title, admin_railway_station_path(stations_routes.railway_station) %></td>
+      <td><%= link_to '+', admin_route_increase_station_number_path(@route, stations_routes: stations_routes), method: :post %></td>
+      <td><%= link_to '-', admin_route_decrease_station_number_path(@route, stations_routes: stations_routes), method: :post %></td>
+  </tr>
+  <% end %>
+</table>
+  </p>
+
+    <strong>Поезда:</strong>
+  <%- @route.trains.each do |train| %>
+  <p><%= full_name(train) %></p>
+  <%- end %>
+
+<p>
+  <strong>Станции:</strong>
+  <% if @route.railway_stations.empty? %>
+  Список пуст
+    <% else %>
+      <table>
+        <thead>
+          <tr>
+            <th width="100px">Название</th>
+            <th>Позиция</th>
+            <th>Прибытие</th>
+            <th>Отправление</th>
+            <th></th>
+          </tr>
+        </thead>
+      <tbody>
+        <% @route.railway_stations.ordered.each do |station| %>
+          <tr>
+            <td><%= station.title %></td>
+            <%= form_tag admin_update_time_and_position_railway_station_path(station), method: :patch do %>
+              <td>
+                <%= number_field_tag :position, station.position_in(@route) %>
+              </td>
+              <td>
+                <%= time_field_tag :arrival_time, station.arrival_time(@route) %>
+              </td>
+              <td>
+                <%= time_field_tag :departure_time, station.departure_time(@route) %>
+              </td>
+              <td>
+                <%= hidden_field_tag :route_id, @route.id %>
+                <%= submit_tag "Изменить" %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</p>
+
+<%= link_to 'Изменить', edit_admin_route_path(@route) %>
+<%= link_to 'Назад', admin_routes_path %>

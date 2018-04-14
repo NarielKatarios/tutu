@@ -1,4 +1,6 @@
 <h1>Билеты</h1>
+<%#= current_user.admin? ? link_to 'На главную', root_path : link_to 'Мой профиль', current_user_path %>
+
 <%= link_to 'На главную', root_path %>
 
 <table border="1">
@@ -16,7 +18,7 @@
     <tr>
       <td><%= link_to ticket.number, ticket_path(ticket) %></td>
       <td><%= ticket.train.number if ticket.train %></td>
-      <td><%= ticket.user&.title %></td>
+      <td><%= ticket.user&.full_name %></td>
       <td><%= ticket.wagon&.number %></td>
       <td><%= link_to 'Изменить', edit_ticket_path(ticket) %></td>
       <td><%= link_to 'Удалить', ticket_path(ticket),
@@ -26,4 +28,5 @@
   <% end %>
 </table>
 
-<%= link_to 'Новый билет', new_ticket_path %>
+<%#= link_to 'Новый билет', new_ticket_path %>
+<%= link_to 'Новый билет', search_index_path %>

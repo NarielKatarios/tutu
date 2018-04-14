@@ -3,7 +3,8 @@
   <p><% train[:trains].each do |tr| %></p>
       <ul>
         <li><%= full_name(tr) %></li>
-        <%= link_to 'купить', new_user_ticket_path(User.first, train: tr, arrival_station_id: params[:first_station_id], departure_station_id: params[:last_station_id]) %>
+        <%#= link_to 'Купить билет', new_user_ticket_path(User.first, train: tr, arrival_station_id: params[:first_station_id], departure_station_id: params[:last_station_id]) %>
+        <%= link_to 'Купить билет', new_ticket_path(User.first, train: tr, arrival_station_id: params[:first_station_id], departure_station_id: params[:last_station_id]) %>
       </ul>
       <% end %>
 <% end %>

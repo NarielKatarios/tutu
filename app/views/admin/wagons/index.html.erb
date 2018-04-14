@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Wagons</h1>
+<%= link_to 'На главную', root_path %>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Номер</th>
+      <th>Поезд</th>
+      <th>Тип</th>
+      <th>Места</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render partial: 'admin/wagons/wagon', collection: @wagons %>
+  </tbody>
+</table>
+
+<br>
+
+<%#= link_to 'Добавить плацкартный вагон', new_admin_train_wagon_path(@train, type: EconomyWagon) %>
+<%#= link_to 'Добавить купейный вагон',    new_admin_train_wagon_path(@train, type: CoupeWagon) %>
+<%#= link_to 'Добавить СВ вагон',          new_admin_train_wagon_path(@train, type: SVWagon)%>
+<%#= link_to 'Добавить сидячий вагон',     new_admin_train_wagon_path(@train, type: SedentaryWagon)%>

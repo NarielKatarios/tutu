@@ -1,6 +1,6 @@
 <p>
   <strong>Имя:</strong>
-  <%= @user.title %>
+  <%= @user.full_name %>
 </p>
 
 <p>
@@ -8,7 +8,7 @@
 <ul>
   <% @user.tickets.each do |ticket| %>
     <li><b>№<%= ticket.number %></b></li>
-    <li>Пользователь: <%= ticket.user.title %></li>
+    <li>Пользователь: <%= ticket.user.full_name %></li>
     <li> Вагон: <%= ticket.wagon.number %></li>
     <li>Станция отправления: <%= RailwayStation.find(ticket.start_station_id).title %></li>
     <li>Станция прибытия: <%= RailwayStation.find(ticket.end_station_id).title %></li>
