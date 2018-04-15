@@ -8,10 +8,6 @@
     <%= form.number_field :number, id: :ticket_number %>
   </p>
   <p>
-    <%#= form.label :user_id, "Пользователь" %><br>
-    <%#= form.select :user_id, User.all.map { |user| [user.full_name, user.id] } %>
-  </p>
- <p>
     <%= form.label :user_surname, "Фамилия отправляющегося" %><br>
     <%= form.text_field :user_surname %>
   </p>
@@ -36,7 +32,6 @@
     <%= form.collection_select :end_station_id, @train.route.railway_stations, :id, :title, {selected: @ticket.end_station_id} %>
   </p>
   <p>
-    <%= form.submit %>
+    <%= form.submit t('.submit', action: @ticket.new_record? ? 'Создать' : 'Изменить')%>
   </p>
-
 <% end %>
