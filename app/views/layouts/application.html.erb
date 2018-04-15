@@ -45,14 +45,12 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Tutu</a>
+        <%= link_to 'Tutu', root_path, class: 'navbar-brand' %>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
             <% if user_signed_in? %>
+              <li><%= link_to 'Купленные билеты', tickets_path %></li>
               <li><%= link_to 'Выйти', destroy_user_session_path, method: :delete  %></li>
-              <% if current_user.admin? %>
-                <li><%= link_to 'Админка', admin_railway_stations_path %></li>
-              <% end %>
             <% else %>
               <li><%= link_to 'Войти', new_user_session_path %></li>
             <% end %>
