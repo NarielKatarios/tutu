@@ -3,6 +3,11 @@ ru:
   common:
     back: "Назад"
     errors: "При заполнении формы возникли ошибки"
+  tickets:
+    new:
+      number: "Новый билет"
+    form:
+      submit: "%{action} билет"
   admin:
     railway_stations:
       new:

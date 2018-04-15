@@ -2,16 +2,46 @@ ru:
   activerecord:
     models:
       railway_station: "Станция"
+      railway_stations_route: "Станции маршрута"
+      route: "Маршрут"
+      ticket: "Билет"
       train: "Поезд"
       user: "Пользователь"
+      wagon: "Вагон"
+      coupe_wagon: "Купе"
+      economy_wagon: "Плацкарт"
+      sedentary_wagon: "Сидячий вагон"
+      sv_wagon: "СВ"
     attributes:
       railway_station:
         title: "Название станции"
       train:
         number: "Номер поезда"
+        current_station_id: "Текущая станция"
+        route_id: "Маршрут поезда"
+        sort_by_tail: "Сортировка вагонов с хвоста поезда"
       user:
         first_name: "Имя пользователя"
         last_name: "Фамилия пользователя"
+      route:
+        title: "Название маршрута"
+        station_number: "Номер станции"
+      ticket:
+        number: "Номер билета"
+        user_name: "Имя отправляющегося"
+        user_surname: "Фамилия отправляющегося"
+        user_patronymic: "Отчество отправляющегося"
+        start_station_id: "Станция отправления"
+        end_station_id: "Станция прибытия"
+      wagon:
+        number: "Номер вагона"
+        train_id: "Поезд вагона"
+        bottom_seats: "Нижние места"
+        top_seats: "Верхние места"
+        side_bottom_seats: "Боковые нижние места"
+        side_top_seats: "Боковые верхние места"
+        sedentary_seats: "Сидячие места"
+        type: "Тип вагона"
     errors:
       messages:
         blank: "не может быть пустым."
@@ -20,3 +50,43 @@ ru:
           attributes:
             title:
               blank: "должно быть указано."
+        route:
+          attributes:
+            title:
+              blank: "должно быть указано."
+        ticket:
+          attributes:
+            number:
+              blank: "должен быть указан."
+        train:
+          attributes:
+            number:
+              blank: "должен быть указан."
+        wagon:
+          attributes:
+            number:
+              blank: "должен быть указан."
+        coupe_wagon:
+          attributes:
+            top_seats:
+              blank: "должны быть указаны."
+            bottom_seats:
+              blank: "должны быть указаны."
+        sedentary_wagon:
+          attributes:
+            sedentary_seats:
+              blank: "должны быть указаны."
+        sv_wagon:
+          attributes:
+            bottom_seats:
+              blank: "должны быть указаны."
+        economy_wagon:
+          attributes:
+            top_seats:
+              blank: "должны быть указаны."
+            bottom_seats:
+              blank: "должны быть указаны."
+            side_bottom_seats:
+              blank: "должны быть указаны."
+            side_top_seats:
+              blank: "должны быть указаны."

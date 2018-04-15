@@ -14,10 +14,14 @@ class Ticket < ApplicationRecord
     "#{train.number}"
   end
 
+  def route_name
+    "#{start_station.title} - #{end_station.title}"
+  end
+
   private
 
   def send_notification
-    #TicketsMailer.buy_ticket(self.user, self).deliver_now
+    TicketsMailer.buy_ticket(self.user, self).deliver_now
   end
 
   def send_delete
