@@ -18,6 +18,9 @@ gem 'jbuilder'
 gem 'jquery-rails'
 gem 'devise'
 
+gem 'therubyracer'
+gem 'twitter-bootstrap-rails'
+
 group :development, :test do
   gem 'byebug'
   gem 'capybara'

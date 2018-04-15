@@ -20,16 +20,15 @@ Rails.application.routes.draw do
       post :increase_station_number
       post :decrease_station_number
     end
-    resources :users do
+    resources :users, except: :new do
       resources :tickets
     end
     resources :wagons
     resources :tickets
   end
 
-  get 'search/index'
   post :search, to: 'search#search'
-
+  get 'search/index'
   get 'welcome/index'
   root 'welcome#index'
 end
