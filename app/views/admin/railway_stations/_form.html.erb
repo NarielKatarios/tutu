@@ -1,14 +1,15 @@
 <%#= form_with(model: railway_station, local: true) do |form| %>
-<%= form_for(@railway_station) do |form| %>
+<%= form_for [:admin, @railway_station] do |form| %>
 
   <%= render 'common/errors', resource: @railway_station %>
 
   <div class="field">
+    <% console %>
     <%= form.label :title %>
     <%= form.text_field :title, id: :railway_station_title %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit t('.submit', action: @railway_station.new_record? ? 'Создать' : 'Изменить') %>
   </div>
 <% end %>

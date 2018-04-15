@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :tickets
+  resources :tickets#, only: [:create, :show]
+  #resource :search, only: [:new, :show, :edit, :create]
 
   namespace :admin do
     resources :trains do
@@ -32,4 +33,5 @@ Rails.application.routes.draw do
 
   get 'welcome/index'
   root 'welcome#index'
+  #root 'searches#show'
 end
