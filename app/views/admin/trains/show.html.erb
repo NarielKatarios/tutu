@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+<h1>
   <strong>Номер поезда:</strong>
   <%= @train.number %>
-</p>
+</h1>
 <p>
   <strong>Находится на станции:</strong>
   <% if @train.current_station.present? %>
@@ -64,9 +64,9 @@
   <strong>Вагоны:</strong>
   <ul>
     <% @train.wagons.each do |wag| %>
-      <li>
+      <ol>
         <%= link_to "Вагон №#{wag.number}", admin_wagon_path(wag) %>
-      </li>
+      </ol>
   </ul>
     <% end %>
 </p>

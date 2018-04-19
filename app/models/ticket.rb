@@ -25,6 +25,6 @@ class Ticket < ApplicationRecord
   end
 
   def send_delete
-    #TicketsMailer.delete_ticket(self.user, self).deliver_now
+    TicketsMailer.delete_ticket(self.user, self).deliver_now
   end
 end

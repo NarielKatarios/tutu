@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20180415153222) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "railway_stations", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
@@ -30,37 +33,38 @@ ActiveRecord::Schema.define(version: 20180415153222) do
   create_table "routes", force: :cascade do |t|
     t.string "title"
     t.text "text"
+    t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "tickets", force: :cascade do |t|
     t.integer "number"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "train_id"
-    t.integer "wagon_id"
-    t.integer "railway_station_id"
-    t.integer "user_id"
+    t.bigint "train_id"
+    t.bigint "wagon_id"
+    t.bigint "railway_station_id"
     t.string "user_name"
     t.string "user_surname"
     t.string "user_patronymic"
     t.integer "start_station_id"
     t.integer "end_station_id"
+    t.index ["end_station_id"], name: "index_tickets_on_end_station_id"
     t.index ["railway_station_id"], name: "index_tickets_on_railway_station_id"
+    t.index ["start_station_id"], name: "index_tickets_on_start_station_id"
     t.index ["train_id"], name: "index_tickets_on_train_id"
     t.index ["user_id"], name: "index_tickets_on_user_id"
     t.index ["wagon_id"], name: "index_tickets_on_wagon_id"
-    t.index [nil], name: "index_tickets_on_end_station"
-    t.index [nil], name: "index_tickets_on_start_station"
   end
 
   create_table "trains", force: :cascade do |t|
     t.integer "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "current_station_id"
-    t.integer "route_id"
+    t.bigint "current_station_id"
+    t.bigint "route_id"
     t.boolean "sort_by_tail"
     t.index ["current_station_id"], name: "index_trains_on_current_station_id"
     t.index ["route_id"], name: "index_trains_on_route_id"
@@ -91,7 +95,7 @@ ActiveRecord::Schema.define(version: 20180415153222) do
     t.integer "side_top_seats"
     t.integer "bottom_seats"
     t.integer "side_bottom_seats"
-    t.integer "train_id"
+    t.bigint "train_id"
     t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

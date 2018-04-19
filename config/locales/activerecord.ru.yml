@@ -90,3 +90,9 @@ ru:
               blank: "должны быть указаны."
             side_top_seats:
               blank: "должны быть указаны."
+        user:
+          attributes:
+            first_name:
+              blank: "должно быть указано."
+            last_name:
+              blank: "должна быть указана."

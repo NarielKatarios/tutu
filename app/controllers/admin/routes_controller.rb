@@ -23,7 +23,7 @@ class Admin::RoutesController < Admin::BaseController
     @route = Route.new(route_params)
 
     if @route.save
-      redirect_to @route
+      redirect_to [:admin, @route]
     else
       render 'new'
     end
@@ -33,7 +33,7 @@ class Admin::RoutesController < Admin::BaseController
     @route = Route.find(params[:id])
 
     if @route.update(route_params)
-      redirect_to @route
+      redirect_to [:admin, @route]
     else
       render 'edit'
     end
@@ -50,7 +50,7 @@ class Admin::RoutesController < Admin::BaseController
     @station = RailwayStation.find(params[:railway_station])
     @route = Route.find(params[:route_id])
     @route.railway_stations.push(@station)
-    redirect_to edit_route_path(@route)
+    redirect_to edit_admin_route_path(@route)
   end
 
   def del_station
@@ -58,7 +58,7 @@ class Admin::RoutesController < Admin::BaseController
     @station = RailwayStation.find(params[:railway_station])
     @route = Route.find(params[:route_id])
     @route.railway_stations.delete(@station)
-    redirect_to edit_route_path(@route)
+    redirect_to edit_admin_route_path(@route)
   end
 
   def increase_station_number
@@ -66,7 +66,7 @@ class Admin::RoutesController < Admin::BaseController
     stations_routes = @route.railway_stations_routes.find(params[:stations_routes])
     num = stations_routes.station_number ? stations_routes.station_number + 1 : 1
     stations_routes.update(station_number: num)
-    redirect_to @route
+    redirect_to [:admin, @route]
   end
 
   def decrease_station_number
@@ -74,7 +74,7 @@ class Admin::RoutesController < Admin::BaseController
     stations_routes = @route.railway_stations_routes.find(params[:stations_routes])
     num = stations_routes.station_number ? stations_routes.station_number - 1 : 1
     stations_routes.update(station_number: num)
-    redirect_to @route
+    redirect_to [:admin, @route]
   end
 
   private
