@@ -21,14 +21,15 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
-  <p>
+  <div class="field">
     <%= f.label :first_name, 'Имя' %><br>
     <%= f.text_field :first_name %>
-  </p>
-  <p>
+  </div>
+
+  <div class="field">
     <%= f.label :last_name, 'Фамилия'%><br>
     <%= f.text_field :last_name %>
-  </p>
+  </div>
 
   <div class="actions">
     <%= f.submit 'Зарегистрироваться' %>

@@ -42,7 +42,7 @@ class Admin::RoutesController < Admin::BaseController
     @route = Route.find(params[:id])
     @route.destroy
 
-    redirect_to routes_path
+    redirect_to admin_routes_path
   end
 
   def add_station

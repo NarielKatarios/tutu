@@ -30,7 +30,7 @@ class Admin::TrainsController < Admin::BaseController
   def update
     respond_to do |format|
       if @train.update(train_params)
-        format.html { redirect_to @train, notice: 'Train was successfully updated.' }
+        format.html { redirect_to [:admin, @train], notice: 'Train was successfully updated.' }
       else
         format.html { render :edit }
       end
@@ -40,7 +40,7 @@ class Admin::TrainsController < Admin::BaseController
   def destroy
     @train.destroy
     respond_to do |format|
-      format.html { redirect_to trains_url, notice: 'Train was successfully destroyed.' }
+      format.html { redirect_to admin_trains_path, notice: 'Train was successfully destroyed.' }
     end
   end
 

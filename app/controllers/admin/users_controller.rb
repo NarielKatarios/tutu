@@ -27,7 +27,7 @@ class Admin::UsersController < Admin::BaseController
     @user = User.find(params[:id])
     @user.destroy
 
-    redirect_to users_path, notice: 'Пользователь удален'
+    redirect_to admin_users_path, notice: 'Пользователь удален'
   end
 
   private
