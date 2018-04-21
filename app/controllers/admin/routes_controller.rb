@@ -54,27 +54,10 @@ class Admin::RoutesController < Admin::BaseController
   end
 
   def del_station
-    # http://localhost:3000/routes/5/del_station?railway_station=1
     @station = RailwayStation.find(params[:railway_station])
     @route = Route.find(params[:route_id])
     @route.railway_stations.delete(@station)
     redirect_to edit_admin_route_path(@route)
-  end
-
-  def increase_station_number
-    @route = Route.find(params[:route_id])
-    stations_routes = @route.railway_stations_routes.find(params[:stations_routes])
-    num = stations_routes.station_number ? stations_routes.station_number + 1 : 1
-    stations_routes.update(station_number: num)
-    redirect_to [:admin, @route]
-  end
-
-  def decrease_station_number
-    @route = Route.find(params[:route_id])
-    stations_routes = @route.railway_stations_routes.find(params[:stations_routes])
-    num = stations_routes.station_number ? stations_routes.station_number - 1 : 1
-    stations_routes.update(station_number: num)
-    redirect_to [:admin, @route]
   end
 
   private

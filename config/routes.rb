@@ -17,8 +17,6 @@ Rails.application.routes.draw do
       resources :railway_stations
       post :add_station
       post :del_station
-      post :increase_station_number
-      post :decrease_station_number
     end
     resources :users, except: :new do
       resources :tickets

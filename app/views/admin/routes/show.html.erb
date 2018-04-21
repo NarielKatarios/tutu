@@ -9,30 +9,11 @@
 </p>
 
 <p>
-  <strong>Порядок станций в маршруте:</strong>
-
-<table class="table table-striped">
-  <tr>
-    <th>ID</th>
-    <th>title</th>
-    <th colspan="2"></th>
-  </tr>
-
-  <% @route.railway_stations_routes.each do |stations_routes| %>
-  <tr>
-      <td><%= stations_routes.station_number %></td>
-      <td><%= link_to stations_routes.railway_station.title, admin_railway_station_path(stations_routes.railway_station) %></td>
-      <td><%= link_to '+', admin_route_increase_station_number_path(@route, stations_routes: stations_routes), method: :post %></td>
-      <td><%= link_to '-', admin_route_decrease_station_number_path(@route, stations_routes: stations_routes), method: :post %></td>
-  </tr>
-  <% end %>
-</table>
-  </p>
-
-    <strong>Поезда:</strong>
+  <strong>Поезда:</strong>
   <%- @route.trains.each do |train| %>
-  <p><%= full_name(train) %></p>
+  <i><%= full_name(train) %></i>
   <%- end %>
+</p>
 
 <p>
   <strong>Станции:</strong>
