@@ -11,7 +11,7 @@
 <p>
   <strong>Поезда:</strong>
   <%- @route.trains.each do |train| %>
-  <i><%= full_name(train) %></i>
+  <%= full_name(train) %>
   <%- end %>
 </p>
 

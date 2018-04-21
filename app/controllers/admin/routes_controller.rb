@@ -7,7 +7,6 @@ class Admin::RoutesController < Admin::BaseController
   def show
     @route = Route.find(params[:id])
     @trains = Train.all
-    # @station_number = RailwayStationsRoute.find(params[:station_number])
   end
 
   def new

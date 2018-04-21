@@ -10,7 +10,6 @@ class Admin::WagonsController < Admin::BaseController
   end
 
   def new
-    #@wagon = @train.wagons.new(wagon_params)
     @wagon = params[:type].constantize.new(wagon_params)
   end
 
