@@ -18,32 +18,24 @@ class Admin::RailwayStationsController < Admin::BaseController
 
   def create
     @railway_station = RailwayStation.new(railway_station_params)
-
-    respond_to do |format|
-      if @railway_station.save
-        # format.html { redirect_to @railway_station, notice: 'Железнодорожная станция успешно создана.' }
-        format.html { redirect_to [:admin, @railway_station], notice: 'Железнодорожная станция успешно создана.' }
-      else
-        format.html { render :new }
-      end
+    if @railway_station.save
+      redirect_to [:admin, @railway_station], notice: 'Железнодорожная станция успешно создана.'
+    else
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @railway_station.update(railway_station_params)
-        format.html { redirect_to [:admin, @railway_station], notice: 'Железнодорожная станция успешно обновлена.' }
-      else
-        format.html { render :edit }
-      end
+    if @railway_station.update(railway_station_params)
+      redirect_to [:admin, @railway_station], notice: 'Железнодорожная станция успешно обновлена.'
+    else
+      render :edit
     end
   end
 
   def destroy
     @railway_station.destroy
-    respond_to do |format|
-      format.html { redirect_to railway_stations_url, notice: 'Железнодорожная станция успешно удалена.' }
-    end
+    redirect_to [:admin, @railway_station], notice: 'Железнодорожная станция успешно удалена.'
   end
 
   def update_time_and_position
@@ -53,11 +45,12 @@ class Admin::RailwayStationsController < Admin::BaseController
   end
 
   private
-    def set_railway_station
-      @railway_station = RailwayStation.find(params[:id])
-    end
 
-    def railway_station_params
-      params.require(:railway_station).permit(:title)
-    end
+  def set_railway_station
+    @railway_station = RailwayStation.find(params[:id])
+  end
+
+  def railway_station_params
+    params.require(:railway_station).permit(:title)
+  end
 end
