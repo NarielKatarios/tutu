@@ -29,7 +29,7 @@
     <li>Сидячих:     <%= @train.wagons.select { |wagon| wagon.type == 'SedentaryWagon' }.size %></li>
     <li> Вагоны:
       <% @train.wagons.each do |wagon| %>
-        <%= link_to wagon.number, admin_wagon_path(wagon) if wagon.id %>
+        <%= link_to wagon.number, admin_wagon_path(wagon) %>
       <% end %>
     </li>
 
@@ -60,16 +60,6 @@
       </li>
     <% end %>
   </ul>
-</p>
-<p>
-  <strong>Вагоны:</strong>
-  <ul>
-    <% @train.wagons.each do |wag| %>
-      <ol>
-        <%= link_to "Вагон №#{wag.number}", admin_wagon_path(wag) if wag.id %>
-      </ol>
-  </ul>
-    <% end %>
 </p>
 
 <%= link_to 'Изменить', edit_admin_train_path(@train) %> |

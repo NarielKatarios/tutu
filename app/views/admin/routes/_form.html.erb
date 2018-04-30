@@ -17,8 +17,6 @@
   </p>
 
   <p>
-    <%#= form.submit %>
-    <%#= form.submit t('.submit', action: route.new_record? ? 'Создать' : 'Изменить') %>
     <%= form.submit "#{ route.new_record? ? 'Создать' : 'Изменить' }" %>
   </p>
 

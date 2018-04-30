@@ -15,8 +15,7 @@ $(document).ready(function() {
             $(this).html('Изменить');
             $(this).removeClass('cancel');
         }
-        console.log(form);
-        console.log(title);
+
         form.toggle();
         title.toggle();
     });
