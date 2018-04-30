@@ -1,7 +1,7 @@
 <h1>Поиск билета</h1>
 
 <div class="row">
-  <%= form_tag '/search', remote: true do %>
+  <%= form_tag '/search', class: 'search_form', remote: true do %>
     <div class="col-md-4">
       <%= select_tag :first_station_id, options_from_collection_for_select(@stations, :id, :title), class: 'form-control' %>
     </div>
@@ -9,7 +9,7 @@
       <%= select_tag :last_station_id, options_from_collection_for_select(@stations, :id, :title), class: 'form-control' %>
     </div>
     <div class="col-md-4">
-    <%= submit_tag 'Найти', class: 'btn btn-primary' %>
+    <%= submit_tag 'Найти', class: 'btn btn-primary find' %>
     </div>
   <% end %>
 </div>

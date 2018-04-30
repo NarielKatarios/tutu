@@ -27,7 +27,7 @@ class Admin::RailwayStationsController < Admin::BaseController
 
   def update
     if @railway_station.update(railway_station_params)
-      redirect_to [:admin, @railway_station], notice: 'Железнодорожная станция успешно обновлена.'
+      redirect_to admin_railway_stations_path, notice: 'Железнодорожная станция успешно обновлена.'
     else
       render :edit
     end

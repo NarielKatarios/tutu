@@ -1,5 +1,10 @@
 <tr>
-  <td><%= link_to railway_station.title, [:admin, railway_station] %></td>
-  <td><%= link_to 'Изменить', edit_admin_railway_station_path(railway_station) %></td>
+  <td>
+    <div id="railway_station_title_<%= railway_station.id %>">
+      <%= link_to railway_station.title, [:admin, railway_station] %>
+    </div>
+    <%= render 'form', station: railway_station, hidden: true %>
+  </td>
+  <td><%= link_to 'Изменить', '', class: 'edit_station', data: { station_id: railway_station.id } %></td>
   <td><%= link_to 'Удалить', [:admin, railway_station], method: :delete, data: { confirm: 'Вы уверены?' } %></td>
 </tr>

@@ -10,10 +10,15 @@
 
   <% @routes.each do |route| %>
     <tr>
-      <td><%= link_to route_full_name(route), admin_route_path(route) %></td>
+      <td>
+        <div id="route_title_<%= route.id %>">
+          <%= link_to route_full_name(route), [:admin, route] %>
+        </div>
+        <%= render 'form', route: route, hidden: true %>
+      </td>
       <td><%= route.text %></td>
-      <td><%= link_to 'Изменить', edit_admin_route_path(route) %></td>
-      <td><%= link_to 'Удалить', admin_route_path(route),
+      <td><%= link_to 'Изменить', '', class: 'edit_route', data: { route_id: route.id } %></td>
+      <td><%= link_to 'Удалить', [:admin, route],
               method: :delete,
               data: { confirm: 'Вы уверены?' } %></td>
     </tr>

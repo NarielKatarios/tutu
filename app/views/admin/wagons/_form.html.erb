@@ -1,4 +1,5 @@
 <%= form_with(url: admin_wagons_path(train_id: @train.id, type: @wagon.class)) do |f| %>
+<%#= form_with [:admin, wagon], html: { style: "display: #{hidden ? 'none' : 'block'}"} do |form| %>
   <%= render 'common/errors', resource: @wagon %>
 
   <p>Добавление <%= @wagon.type_name %> вагона к поезду №<%= @train.number %></p>

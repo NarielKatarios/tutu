@@ -29,7 +29,7 @@
     <li>Сидячих:     <%= @train.wagons.select { |wagon| wagon.type == 'SedentaryWagon' }.size %></li>
     <li> Вагоны:
       <% @train.wagons.each do |wagon| %>
-        <%= link_to wagon.number, admin_wagon_path(wagon) %>
+        <%= link_to wagon.number, admin_wagon_path(wagon) if wagon.id %>
       <% end %>
     </li>
 
@@ -42,10 +42,11 @@
     </li>
   </ul>
 </p>
-<p><%= link_to 'Добавить плацкартный вагон', new_admin_train_wagon_path(@train, type: 'EconomyWagon') %></p>
-<p><%= link_to 'Добавить купейный вагон',    new_admin_train_wagon_path(@train, type: 'CoupeWagon') %></p>
-<p><%= link_to 'Добавить СВ вагон',          new_admin_train_wagon_path(@train, type: 'SvWagon') %></p>
-<p><%= link_to 'Добавить сидячий вагон',     new_admin_train_wagon_path(@train, type: 'SedentaryWagon') %></p>
+<p>
+  <strong>Добавить вагон:</strong>
+</p>
+  <p><%= select_tag :wagon, options_for_select(Wagon::WAGON_TYPES, Wagon::WAGON_TYPES.first), id: 'select_wagon_type' %></p>
+  <p><%= link_to 'Добавить', new_admin_train_wagon_path(@train, type: ''),  class: 'btn btn-primary', id: 'wagon_type_button' %></p>
 </p>
 <p>
   <strong>Билеты:</strong>
@@ -65,7 +66,7 @@
   <ul>
     <% @train.wagons.each do |wag| %>
       <ol>
-        <%= link_to "Вагон №#{wag.number}", admin_wagon_path(wag) %>
+        <%= link_to "Вагон №#{wag.number}", admin_wagon_path(wag) if wag.id %>
       </ol>
   </ul>
     <% end %>

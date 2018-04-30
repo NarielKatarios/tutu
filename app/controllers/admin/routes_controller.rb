@@ -30,12 +30,13 @@ class Admin::RoutesController < Admin::BaseController
 
   def update
     @route = Route.find(params[:id])
+    @railway_stations = @route.railway_stations
 
-    if @route.update(route_params)
-      redirect_to [:admin, @route]
-    else
-      render 'edit'
-    end
+    # if @route.update(route_params)
+      redirect_to admin_routes_path
+    # else
+    #   render 'edit'
+    # end
   end
 
   def destroy
