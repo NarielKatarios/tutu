@@ -1,11 +1,12 @@
 <tr>
   <td><%= link_to wagon.number, admin_wagon_path(wagon) %></td>
   <td><%= wagon.train.number if wagon.train %></td>
-  <td><%= wagon.type %></td>
+  <td><%= wagon.type = wagon.type_name%></td>
   <td><ul>
     <%- wagon.seat_types.each do |type| %>
-    <li>
-      <%= type.to_s + ': ' + wagon.send(type).to_s %>
+      <li>
+      <%= Wagon.seats_type(type) %>
+      <%= ': ' + wagon.send(type).to_s %>
     </li>
     <% end %>
   </ul></td>

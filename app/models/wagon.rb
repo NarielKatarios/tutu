@@ -3,6 +3,7 @@ class Wagon < ApplicationRecord
   belongs_to :train
   has_many :tickets
 
+  WAGON_TYPES = [['Плацкарт', 'EconomyWagon'], ['Купе', 'CoupeWagon'], ['Сидячий', 'SedentaryWagon'], ['СВ', 'SvWagon']]
   scope :economy,   -> { where(type: 'EconomyWagon') }
   scope :coupe,     -> { where(type: 'CoupeWagon') }
   scope :sedentary, -> { where(type: 'SedentaryWagon') }
@@ -12,33 +13,22 @@ class Wagon < ApplicationRecord
 
   def type_name
     case self.type
-      when "EconomyWagon"
-        "Плацкарт"
-      when "CoupeWagon"
-        "Купе"
-      when "SvWagon"
-        "СВ"
-      when "SedentaryWagon"
-        "Сидячий"
-      else
-        "Тип не назначен"
+      when "EconomyWagon"   then "Плацкарт"
+      when "CoupeWagon"     then "Купе"
+      when "SvWagon"        then "СВ"
+      when "SedentaryWagon" then "Сидячий"
+      else "Тип не назначен"
     end
   end
 
   def self.seats_type(type)
     case type
-      when :top_seats
-        "Верхние места"
-      when :bottom_seats
-        "Нижние места"
-      when :side_bottom_seats
-        "Боковые нижние места"
-      when :side_top_seats
-        "Боковые верхние места"
-      when :sedentary_seats
-        "Сидячие места"
-      else
-        "Тип не назначен"
+      when :top_seats         then "Верхние места"
+      when :bottom_seats      then "Нижние места"
+      when :side_bottom_seats then "Боковые нижние места"
+      when :side_top_seats    then "Боковые верхние места"
+      when :sedentary_seats   then "Сидячие места"
+      else "Тип не назначен"
     end
   end
 
