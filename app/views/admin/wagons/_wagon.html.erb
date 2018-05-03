@@ -10,6 +10,6 @@
     </li>
     <% end %>
   </ul></td>
-  <td><%= link_to 'Изменить', edit_admin_wagon_path(wagon) %></td>
+  <td><%= link_to 'Изменить', edit_admin_wagon_path(wagon, train_id: wagon.train&.id) if wagon.train %></td>
   <td><%= link_to 'Удалить', admin_wagon_path(wagon), method: :delete, data: { confirm: 'Вы уверены?' } %></td>
 </tr>

@@ -1,6 +1,6 @@
 <h1>Изменение железнодорожной станции</h1>
 
-<%= render 'form', station: @railway_station %>
+<%= render 'form', station: @railway_station, hidden: true %>
 
 <%= link_to 'Просмотр', [:admin, @railway_station] %> |
 <%= link_to 'Назад', admin_railway_stations_path %>
